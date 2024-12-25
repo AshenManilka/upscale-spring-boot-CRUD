@@ -1,7 +1,7 @@
 package com.devstack.ecom.upscale.service.impl;
 
 import com.devstack.ecom.upscale.dto.request.RequestCustomerDto;
-import com.devstack.ecom.upscale.dto.response.ResponceCustomerDto;
+import com.devstack.ecom.upscale.dto.response.ResponseCustomerDto;
 import com.devstack.ecom.upscale.dto.response.paginate.CustomerPaginateDto;
 import com.devstack.ecom.upscale.entity.Customer;
 import com.devstack.ecom.upscale.exception.EntryNotFoundException;
@@ -38,12 +38,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponceCustomerDto findById(String id) {
+    public ResponseCustomerDto findById(String id) {
        Optional <Customer> selectedCustomer = customerRepo.findById(id);
        if(selectedCustomer.isEmpty()){
            throw  new EntryNotFoundException("Customer not found");
        }
-       return toResponceCustomerDto(selectedCustomer.get());
+       return toResponseCustomerDto(selectedCustomer.get());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         return CustomerPaginateDto.builder()
                 .dataList( customerRepo.findAllWithSearchText(searchText, PageRequest.of(page, size))
-                        .stream().map(this::toResponceCustomerDto).toList())
+                        .stream().map(this::toResponseCustomerDto).toList())
                 .count(customerRepo.countAllWithSearchText(searchText))
                 .build();
     }
@@ -78,8 +78,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
-    private ResponceCustomerDto toResponceCustomerDto(Customer customer) {
-        return  ResponceCustomerDto.builder()
+    private ResponseCustomerDto toResponseCustomerDto(Customer customer) {
+        return  ResponseCustomerDto.builder()
                 .propertyId(customer.getPropertyId())
                 .address(customer.getAddress())
                 .phone(customer.getPhone())

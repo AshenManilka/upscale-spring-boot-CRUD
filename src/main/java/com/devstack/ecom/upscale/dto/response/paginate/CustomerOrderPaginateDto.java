@@ -1,6 +1,7 @@
 package com.devstack.ecom.upscale.dto.response.paginate;
 
 import com.devstack.ecom.upscale.dto.response.ResponseCustomerDto;
+import com.devstack.ecom.upscale.dto.response.ResponseCustomerOrderDto;
 import lombok.*;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 @Setter
 @Builder
 
-public class CustomerPaginateDto {
+public class CustomerOrderPaginateDto {
     private long count;
-    private List<ResponseCustomerDto> dataList;
+    private List<ResponseCustomerOrderDto> dataList;
 }

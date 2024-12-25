@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResponceCustomerDto {
+public class ResponseCustomerDto {
 
     private String propertyId;
     private String name;

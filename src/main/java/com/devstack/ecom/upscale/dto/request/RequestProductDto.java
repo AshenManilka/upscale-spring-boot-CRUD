@@ -1,14 +1,14 @@
 package com.devstack.ecom.upscale.dto.request;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
-
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductImageDto {
+public class RequestProductDto {
+    private Long qty;
+    private Double unitPrice;
+    private String description;
 
-    private MultipartFile image;
 }

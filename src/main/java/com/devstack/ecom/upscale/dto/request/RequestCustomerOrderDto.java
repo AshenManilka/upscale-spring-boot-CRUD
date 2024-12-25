@@ -8,7 +8,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CustomerOrderDto {
+public class RequestCustomerOrderDto {
     private Date createdDate;
     private double total;
     private int qty;
