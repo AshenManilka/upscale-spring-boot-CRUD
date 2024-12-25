@@ -35,12 +35,12 @@ public class FileServiceImpl implements FileService {
             PutObjectResult putObjectResult = s3Client.putObject(new
                     PutObjectRequest(bucket, directory + "" + newFileName, file.getInputStream(),
                     new ObjectMetadata()).withCannedAcl(CannedAccessControlList.PublicRead));
-            CommonFileSavedBinaryDataDto commonFileSavedBinaryDataDTO = new CommonFileSavedBinaryDataDto(
+
+            return new CommonFileSavedBinaryDataDto(
                     new SerialBlob(putObjectResult.getContentMd5().getBytes()),
                     directory,
                     new SerialBlob(newFileName.getBytes()),
                     new SerialBlob(s3Client.getResourceUrl(bucket, directory + newFileName).getBytes()));
-            return commonFileSavedBinaryDataDTO;
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }

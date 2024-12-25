@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,7 +19,6 @@ public class Product {
     @Id
     @Column(name="property_id")
     private String propertyId;
-
     private Long qty;
     private Double unitPrice;
     private String description;
@@ -26,5 +26,8 @@ public class Product {
     @OneToMany(mappedBy = "product" , fetch = FetchType.LAZY,
     cascade = CascadeType.ALL)
     private HashSet<ProductImage> images = new HashSet<>();
+
+    @OneToMany (fetch = FetchType.LAZY ,  mappedBy = "product")
+    private Set<CustomerOrder> orders = new HashSet<>();
 
 }
